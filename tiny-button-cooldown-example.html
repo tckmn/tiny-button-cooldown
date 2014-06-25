@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<meta charset='utf-8' />
+		<title>Tiny Button Cooldown Example</title>
+		<script type='text/javascript' src='jquery-1.11.1.min.js'></script>
+		<script type='text/javascript' src='tiny-button-cooldown.js'></script>
+		<script type='text/javascript'>
+			$(function() {
+				var c = new Cooldown({
+			 	   padding: 10,
+			       buttons: $('button'),
+			       length: 1,
+			       autoSetup: true
+			    });
+			});
+		</script>
+	</head>
+	<body>
+		<button>Click me</button>
+	</body>
+</html>
