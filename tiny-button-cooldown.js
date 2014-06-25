@@ -1,12 +1,3 @@
-/*
- * Simple usage example:
- *   var c = new Cooldown({
- * 	   padding: 10,
- *     buttons: $('button'),
- *     autoSetup: true
- *   });
- */
-
 function Cooldown(options) {
 	if (!options.padding) options.padding = 0;
 	options.buttons = $(options.buttons); // verify just in case
@@ -25,32 +16,40 @@ function Cooldown(options) {
 Cooldown.prototype.initialize = function() {
 	this.setupButtons();
 	if (this.toAutoSetupInInitialize) this._autoSetup();
+	
+	return this; // chain
 };
 Cooldown.prototype.setupButtons = function() {
 	this.buttons.css({
 		padding: this.padding + 'px',
 		position: 'relative'
-	});
+	}).append($('<div>')
+		.text('\u00A0')
+		.addClass('_tiny_button_cooldown_progress-bar')
+		.css({
+			position: 'absolute',
+			top: '0px',
+			left: '0px',
+			backgroundColor: '#000', // TODO make customizable
+			opacity: '0.5',
+			width: '0px',
+			height: '0px'
+		}));
+		
+	return this; // chain
 };
-Cooldown.prototype.autoSetup = function() { this.toAutoSetupInInitialize = true; };
+Cooldown.prototype.autoSetup = function() {
+	this.toAutoSetupInInitialize = true;
+	
+	return this; // chain
+};
 Cooldown.prototype._autoSetup = function() {
 	var cooldown = this;
 	this.buttons.each(function() {
 		// verify jQuery object first, just in case
 		$(this).click(function() {
 			cooldown.cooldown(this);
-		}).append($('<div>')
-			.text('\u00A0')
-			.addClass('_tiny_button_cooldown_progress-bar')
-			.css({
-				position: 'absolute',
-				top: '0px',
-				left: '0px',
-				backgroundColor: '#000', // TODO make customizable
-				opacity: '0.5',
-				width: '0px',
-				height: '0px'
-			}));
+		});
 	});
 };
 Cooldown.prototype.cooldown = function($el, callback, length) {
@@ -83,4 +82,6 @@ Cooldown.prototype.cooldown = function($el, callback, length) {
 			if (callback) callback($el);
 		}
 	});
+	
+	return this; // chain
 };
