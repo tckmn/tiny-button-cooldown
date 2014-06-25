@@ -8,15 +8,23 @@
 		<script type='text/javascript'>
 			$(function() {
 				var basicCooldownExample = new Cooldown({
-			 	   padding: 10,
-			       buttons: $('button'),
-			       length: 1,
-			       autoSetup: true
+					padding: 10,
+					buttons: $('#basic-cooldown-example button'),
+					length: 1,
+					autoSetupAll: true
 			    });
+			    
+			    var customCooldownExample = new Cooldown({
+			    	buttons: $('#custom-cooldown-example button'),
+			    	length: 1
+			    });
+			    customCooldownExample.autoSetup(customCooldownExample.buttons[0], {color: 'red'})
+			    	.autoSetup(customCooldownExample.buttons[1], {length: 0.5});
 			});
 		</script>
 	</head>
 	<body>
-		<button>Click me</button> <button>Also click me</button>
+		<p id='basic-cooldown-example'><button>Click me</button> <button>Also click me</button></p>
+		<p id='custom-cooldown-example'><button>I am colorful and have no padding</button> <button>And my cooldown is only half a second</button></p>
 	</body>
 </html>
