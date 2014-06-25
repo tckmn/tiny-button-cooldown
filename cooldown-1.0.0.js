@@ -1,3 +1,9 @@
+/*
+ * cooldown-1.0.0.js
+ * @author Keyboard Fire <http://keyboardfire.com>
+ * @license MIT
+ */
+
 function Cooldown(options) {
 	if (!options) options = {};
 	
