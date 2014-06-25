@@ -11,3 +11,6 @@ Simple example usage:
         length: 1,            // length of cooldown (1 second)
         autoSetupAll: true    // do the rest of the work automatically
     });
+
+Screenshot:  
+![screenshot](http://i.imgur.com/BCo51rN.png)
